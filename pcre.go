@@ -473,7 +473,9 @@ func (m *Matcher) Extract() [][]byte {
 	for i := 1; i <= m.groups; i++ {
 		x0 := m.ovector[2*i]
 		x1 := m.ovector[2*i+1]
-		extract[i] = m.subjectb[x0:x1]
+		if x0 >= 0 && x1 >= 0 {
+			extract[i] = m.subjectb[x0:x1]
+		}
 	}
 	return extract
 }
